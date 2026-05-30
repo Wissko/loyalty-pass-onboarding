@@ -6,6 +6,7 @@ Static HTML guide for explaining how merchants use the TBS Loyalty Pass app.
 
 - `index.html`: full user guide
 - `assets/screens/`: 22 app screenshots used in the guide
+- `assets/brand/to-be-seen-logo.png`: TO BE SEEN logo used in the header and hero
 
 ## Open locally
 
