@@ -28,6 +28,7 @@
         radial-gradient(circle at top left, rgba(217, 164, 65, .18), transparent 30rem),
         linear-gradient(135deg, #f8f6f1, #eee8dc 58%, #f9f5ec);
       color: var(--ink);
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
@@ -52,7 +53,7 @@
     .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
     .brand small, .eyebrow { color: #8a711a; letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 800; }
     .brand strong { display: block; font-size: 15px; letter-spacing: -.03em; }
-    .nav { display: flex; gap: 8px; align-items: center; overflow-x: auto; scrollbar-width: none; }
+    .nav { display: flex; gap: 8px; align-items: center; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
     .nav a { white-space: nowrap; border: 1px solid var(--line); background: rgba(255,255,255,.58); padding: 10px 13px; border-radius: 999px; font-size: 12px; font-weight: 750; color: #403a34; }
     .nav a:hover { background: var(--ink); color: white; border-color: var(--ink); }
 
@@ -90,7 +91,7 @@
     .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border-radius: 17px; font-weight: 800; border: 1px solid transparent; }
     .btn.gold { background: var(--gold-2); color: #111; }
     .btn.ghost { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.07); color: white; }
-    .hero-shot { display: grid; place-items: center; }
+    .hero-shot { display: grid; place-items: center; overflow: hidden; }
     .phone-stack { position: relative; min-height: 620px; width: min(420px, 100%); }
     .phone-stack img { position: absolute; width: 72%; border-radius: 30px; box-shadow: 0 26px 70px rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.74); }
     .phone-stack img:first-child { left: 0; top: 34px; transform: rotate(-5deg); }
@@ -140,14 +141,93 @@
 
     .footer { padding: 36px 0 54px; color: var(--muted); font-weight: 650; }
 
+    .progress-rail { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 80; background: rgba(10,11,13,.08); }
+    .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); transition: width .12s ease; }
+    .guide-tools {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      border-radius: 26px;
+      padding: 14px;
+      margin: 22px 0;
+      box-shadow: 0 14px 38px rgba(20,23,26,.06);
+    }
+    .search-box { position: relative; }
+    .search-box input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffaf0;
+      color: var(--ink);
+      padding: 0 16px;
+      font: inherit;
+      font-weight: 760;
+      outline: none;
+    }
+    .search-box input:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(217,164,65,.16); }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .filter-pill, .mini-action {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.76);
+      color: #403a34;
+      padding: 0 13px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .filter-pill[aria-pressed="true"], .mini-action:hover { background: var(--ink); color: white; border-color: var(--ink); }
+    .step.hidden { display: none; }
+    .step-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .step-type { border: 1px solid rgba(217,164,65,.35); background: #fff4cf; color: #6f5a17; border-radius: 999px; padding: 7px 10px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; }
+    .step-toggle {
+      margin-top: 18px;
+      border: 0;
+      background: var(--ink);
+      color: white;
+      border-radius: 14px;
+      min-height: 42px;
+      padding: 0 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .step.is-collapsed .step-extra { display: none; }
+    .screen-frame { cursor: zoom-in; transition: transform .18s ease, box-shadow .18s ease; }
+    .screen-frame:hover { transform: translateY(-3px); box-shadow: 0 28px 70px rgba(0,0,0,.24); }
+    .lightbox { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: rgba(4,5,6,.82); padding: 22px; }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-height: 88vh; max-width: min(420px, 92vw); border-radius: 30px; box-shadow: 0 30px 90px rgba(0,0,0,.45); }
+    .lightbox button { position: fixed; top: 18px; right: 18px; min-height: 44px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.1); color: white; padding: 0 16px; font: inherit; font-weight: 900; cursor: pointer; }
+    .check-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .check-progress strong { font-size: 14px; min-width: max-content; }
+    .check-track { flex: 1; height: 10px; border-radius: 999px; background: rgba(10,11,13,.08); overflow: hidden; }
+    .check-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--green), var(--gold-2)); transition: width .2s ease; }
+    .check-item { cursor: pointer; border-radius: 18px; padding: 8px; margin: -8px; transition: background .15s ease; }
+    .check-item:hover { background: rgba(217,164,65,.08); }
+    .check-item.done p { text-decoration: line-through; color: #827b70; }
+    .toc-card { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+    .toc-card a { border: 1px solid var(--line); background: rgba(255,255,255,.74); border-radius: 22px; padding: 16px; box-shadow: 0 10px 28px rgba(20,23,26,.05); }
+    .toc-card strong { display: block; letter-spacing: -.04em; font-size: 18px; }
+    .toc-card span { display: block; margin-top: 6px; color: var(--muted); font-weight: 700; font-size: 13px; line-height: 1.35; }
+
+
     @media (max-width: 860px) {
-      .hero-grid, .grid-3, .two-col { grid-template-columns: 1fr; }
+      .hero-grid, .grid-3, .two-col, .guide-tools, .toc-card { grid-template-columns: 1fr; }
       .hero-card { min-height: auto; border-radius: 32px; }
       .phone-stack { min-height: 520px; }
       .step, .step:nth-child(even) { grid-template-columns: 1fr; border-radius: 30px; }
       .step:nth-child(even) .step-copy { order: initial; }
       .section-head { display: block; }
-      .nav { max-width: 52vw; }
+      .nav { max-width: 64vw; }
+      .filter-pills { justify-content: flex-start; }
     }
 
     @media (max-width: 520px) {
@@ -158,6 +238,14 @@
       .hero-actions .btn { width: 100%; }
       .card { border-radius: 24px; }
       .screen-frame { max-width: 300px; }
+      .topbar-inner { gap: 10px; }
+      .brand { gap: 9px; }
+      .brand-mark { width: 40px; height: 40px; flex: 0 0 auto; }
+      .brand small { font-size: 9px; letter-spacing: .16em; }
+      .brand strong { font-size: 13px; }
+      .nav a { padding: 9px 11px; }
+      .check-progress { flex-wrap: wrap; align-items: flex-start; }
+      .check-track { flex-basis: 100%; order: 3; }
     }
 
     @media print {
@@ -168,6 +256,7 @@
   </style>
 </head>
 <body>
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar" id="pageProgress"></div></div>
   <header class="topbar">
     <div class="shell topbar-inner">
       <a class="brand" href="#top" aria-label="Back to top">
@@ -195,6 +284,7 @@
             <p>A clear guide for merchant login, customer signup, QR scanning, stamp validation, reward management and Wallet offer sending.</p>
             <div class="hero-actions">
               <a class="btn gold" href="#parcours">Start the guide</a>
+              <a class="btn ghost" href="#quick-paths">Choose a path</a>
               <a class="btn ghost" href="#checklist">View checklist</a>
             </div>
           </div>
@@ -222,6 +312,12 @@
           <article class="card"><div class="number">2</div><h3>Scan</h3><p>The merchant scans the customer private QR code at the counter to add a stamp or credit a purchase.</p></article>
           <article class="card"><div class="number">3</div><h3>Re-engage</h3><p>Customers with an active Wallet pass can receive offers directly through Apple Wallet or Google Wallet.</p></article>
         </div>
+        <div class="toc-card" id="quick-paths" aria-label="Quick paths">
+          <a href="#parcours" data-filter-jump="setup"><strong>Set up the merchant</strong><span>Login, home, public QR and customers.</span></a>
+          <a href="#scanner" data-filter-jump="counter"><strong>Train the counter team</strong><span>Scan a customer, add a stamp, redeem a reward.</span></a>
+          <a href="#rewards-profile" data-filter-jump="wallet"><strong>Manage Wallet cards</strong><span>Profile, refresh, design and Apple/Google Wallet.</span></a>
+          <a href="#offers-flow" data-filter-jump="offers"><strong>Send an offer</strong><span>Create, review and send a Wallet push offer.</span></a>
+        </div>
       </div>
     </section>
 
@@ -232,7 +328,21 @@
             <span class="eyebrow">Merchant flow</span>
             <h2>The screens, in order</h2>
           </div>
-          <p class="lead">This flow uses the provided screens and explains what to do at each step.</p>
+          <p class="lead">This flow uses the provided screens and explains what to do at each step. Use the filters to show only what matters for the merchant conversation.</p>
+        </div>
+        <div class="guide-tools" aria-label="Guide controls">
+          <label class="search-box">
+            <span class="eyebrow">Find a step</span>
+            <input id="stepSearch" type="search" placeholder="Search: QR, Wallet, reward, offer..." autocomplete="off" />
+          </label>
+          <div class="filter-pills" role="group" aria-label="Filter steps">
+            <button class="filter-pill" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-pill" type="button" data-filter="setup" aria-pressed="false">Setup</button>
+            <button class="filter-pill" type="button" data-filter="counter" aria-pressed="false">Counter</button>
+            <button class="filter-pill" type="button" data-filter="wallet" aria-pressed="false">Wallet</button>
+            <button class="filter-pill" type="button" data-filter="offers" aria-pressed="false">Offers</button>
+            <button class="mini-action" type="button" id="expandAll">Expand all</button>
+          </div>
         </div>
 
         <div class="flow">
@@ -551,7 +661,7 @@
         <article class="card">
           <span class="eyebrow">Profile</span>
           <h2>Update cards</h2>
-          <p>Dans Profile, le bouton <strong>Refresh all Wallet cards</strong> pushes the latest changes to installed Wallet cards.</p>
+          <p>In Profile, the <strong>Refresh all Wallet cards</strong> button pushes the latest changes to installed Wallet cards.</p>
           <ul>
             <li>Use it after changing the logo or color.</li>
             <li>Use it after changing the number of stamps.</li>
@@ -569,18 +679,23 @@
             <h2>Key points for training a merchant</h2>
           </div>
         </div>
+        <div class="check-progress" aria-live="polite">
+          <strong id="checkLabel">0/8 completed</strong>
+          <div class="check-track"><div class="check-bar" id="checkBar"></div></div>
+          <button class="mini-action" type="button" id="resetChecklist">Reset</button>
+        </div>
         <div class="two-col">
           <article class="card do-dont">
-            <div class="row"><span class="dot green">✓</span><p><strong>Merchant QR</strong>: used to register a new customer.</p></div>
-            <div class="row"><span class="dot green">✓</span><p><strong>Customer QR</strong>: used for counter scanning.</p></div>
-            <div class="row"><span class="dot green">✓</span><p><strong>Add stamp</strong> adds 1 stamp to the scanned customer.</p></div>
-            <div class="row"><span class="dot green">✓</span><p><strong>Redeem</strong> validates a reward when the customer is eligible.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Merchant QR</strong>: used to register a new customer.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Customer QR</strong>: used for counter scanning.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Add stamp</strong> adds 1 stamp to the scanned customer.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Redeem</strong> validates a reward when the customer is eligible.</p></div>
           </article>
           <article class="card do-dont">
-            <div class="row"><span class="dot">!</span><p>A Wallet offer is only sent to customers with an active Wallet card.</p></div>
-            <div class="row"><span class="dot">!</span><p>Do not send too many offers: ideally 1 to 3 per week.</p></div>
-            <div class="row"><span class="dot">!</span><p>After a visual change, use <strong>Refresh all Wallet cards</strong>.</p></div>
-            <div class="row"><span class="dot">!</span><p>If the camera does not work, paste the customer code into the manual field.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>A Wallet offer is only sent to customers with an active Wallet card.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>Do not send too many offers: ideally 1 to 3 per week.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>After a visual change, use <strong>Refresh all Wallet cards</strong>.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>If the camera does not work, paste the customer code into the manual field.</p></div>
           </article>
         </div>
       </div>
@@ -590,5 +705,142 @@
   <footer class="footer">
     <div class="shell">TBS Loyalty Pass — merchant onboarding. Open this file in a browser or host it as a static page.</div>
   </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot preview">
+    <button type="button" id="closeLightbox">Close</button>
+    <img src="" alt="" id="lightboxImage" />
+  </div>
+
+  <script>
+    const categories = [
+      'setup','setup','setup','setup',
+      'counter','counter','counter','counter','counter','counter',
+      'wallet','wallet','wallet','wallet','wallet','wallet','wallet',
+      'offers','offers','wallet','wallet','wallet'
+    ];
+    const labels = { setup: 'Setup', counter: 'Counter', wallet: 'Wallet', offers: 'Offers' };
+    const steps = [...document.querySelectorAll('.step')];
+    let activeFilter = 'all';
+
+    steps.forEach((step, index) => {
+      const category = categories[index] || 'setup';
+      step.dataset.category = category;
+      step.dataset.text = step.innerText.toLowerCase();
+      const eyebrow = step.querySelector('.eyebrow');
+      const meta = document.createElement('div');
+      meta.className = 'step-meta';
+      const type = document.createElement('span');
+      type.className = 'step-type';
+      type.textContent = labels[category] || category;
+      if (eyebrow) meta.append(eyebrow, type);
+      step.querySelector('.step-copy')?.prepend(meta);
+
+      const copy = step.querySelector('.step-copy');
+      const extraNodes = [...copy.children].filter((node) => !node.classList?.contains('step-meta') && node.tagName !== 'H3');
+      const extra = document.createElement('div');
+      extra.className = 'step-extra';
+      extraNodes.forEach((node) => extra.appendChild(node));
+      copy.appendChild(extra);
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'step-toggle';
+      toggle.textContent = 'Show less';
+      toggle.addEventListener('click', () => {
+        const collapsed = step.classList.toggle('is-collapsed');
+        toggle.textContent = collapsed ? 'Show details' : 'Show less';
+      });
+      copy.appendChild(toggle);
+    });
+
+    function applyFilters() {
+      const q = document.querySelector('#stepSearch')?.value.trim().toLowerCase() || '';
+      steps.forEach((step) => {
+        const categoryMatch = activeFilter === 'all' || step.dataset.category === activeFilter;
+        const searchMatch = !q || step.dataset.text.includes(q);
+        step.classList.toggle('hidden', !(categoryMatch && searchMatch));
+      });
+    }
+
+    document.querySelectorAll('.filter-pill').forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll('.filter-pill').forEach((pill) => pill.setAttribute('aria-pressed', String(pill === button)));
+        applyFilters();
+      });
+    });
+    document.querySelector('#stepSearch')?.addEventListener('input', applyFilters);
+    document.querySelector('#expandAll')?.addEventListener('click', (event) => {
+      const collapsedCount = steps.filter((step) => step.classList.contains('is-collapsed')).length;
+      const shouldExpand = collapsedCount > 0;
+      steps.forEach((step) => {
+        step.classList.toggle('is-collapsed', !shouldExpand);
+        const toggle = step.querySelector('.step-toggle');
+        if (toggle) toggle.textContent = shouldExpand ? 'Show less' : 'Show details';
+      });
+      event.currentTarget.textContent = shouldExpand ? 'Collapse all' : 'Expand all';
+    });
+    document.querySelectorAll('[data-filter-jump]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.filterJump;
+        const button = document.querySelector(`.filter-pill[data-filter="${target}"]`);
+        setTimeout(() => button?.click(), 60);
+      });
+    });
+
+    const progress = document.querySelector('#pageProgress');
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
+    }
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    const lightbox = document.querySelector('#lightbox');
+    const lightboxImage = document.querySelector('#lightboxImage');
+    document.querySelectorAll('.screen-frame img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    }
+    document.querySelector('#closeLightbox')?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+
+    const checklist = [...document.querySelectorAll('.check-item')];
+    const stored = JSON.parse(localStorage.getItem('tbsChecklist') || '[]');
+    function renderChecklist() {
+      const done = checklist.filter((item) => item.classList.contains('done')).length;
+      document.querySelector('#checkLabel').textContent = `${done}/${checklist.length} completed`;
+      document.querySelector('#checkBar').style.width = `${checklist.length ? (done / checklist.length) * 100 : 0}%`;
+      localStorage.setItem('tbsChecklist', JSON.stringify(checklist.map((item) => item.classList.contains('done'))));
+    }
+    checklist.forEach((item, index) => {
+      item.classList.toggle('done', Boolean(stored[index]));
+      item.setAttribute('role', 'checkbox');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-checked', String(Boolean(stored[index])));
+      const toggle = () => {
+        const done = item.classList.toggle('done');
+        item.setAttribute('aria-checked', String(done));
+        renderChecklist();
+      };
+      item.addEventListener('click', toggle);
+      item.addEventListener('keydown', (event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); toggle(); } });
+    });
+    document.querySelector('#resetChecklist')?.addEventListener('click', () => {
+      checklist.forEach((item) => { item.classList.remove('done'); item.setAttribute('aria-checked', 'false'); });
+      renderChecklist();
+    });
+    renderChecklist();
+  </script>
+
 </body>
 </html>

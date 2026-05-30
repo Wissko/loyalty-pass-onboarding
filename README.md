@@ -18,6 +18,15 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Interactive features
+
+- Scroll progress bar
+- Searchable guide steps
+- Category filters: Setup, Counter, Wallet, Offers
+- Expand/collapse all step details
+- Click any screenshot to open a larger preview
+- Interactive merchant training checklist saved in the browser
+
 ## Guide sections
 
 - Merchant login
