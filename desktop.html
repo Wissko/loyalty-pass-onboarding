@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TBS Loyalty Pass — Desktop Guide</title>
+  <meta name="description" content="Desktop version of the TBS Loyalty Pass onboarding guide for client demos." />
+  <style>
+    :root {
+      --ink: #0a0b0d;
+      --paper: #f6f2eb;
+      --paper-2: #fffdf8;
+      --muted: #6a645c;
+      --line: #e7ded0;
+      --gold: #d9a441;
+      --gold-2: #ffc94a;
+      --green: #3f9f6b;
+      --shadow: 0 24px 70px rgba(20, 23, 26, .12);
+      --radius: 30px;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Inter, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(217, 164, 65, .18), transparent 30rem),
+        linear-gradient(135deg, #f8f6f1, #eee8dc 58%, #f9f5ec);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .shell { width: min(1320px, calc(100% - 48px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(231, 222, 208, .9);
+      background: rgba(248, 246, 241, .86);
+      backdrop-filter: blur(18px);
+    }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 46px; height: 46px; border-radius: 50%; background: #050505;
+      display: grid; place-items: center; overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16), 0 10px 25px rgba(0,0,0,.12);
+    }
+    .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .brand small, .eyebrow { color: #8a711a; letter-spacing: .22em; text-transform: uppercase; font-size: 11px; font-weight: 800; }
+    .brand strong { display: block; font-size: 15px; letter-spacing: -.03em; }
+    .nav { display: flex; gap: 8px; align-items: center; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; }
+    .nav a { white-space: nowrap; border: 1px solid var(--line); background: rgba(255,255,255,.58); padding: 10px 13px; border-radius: 999px; font-size: 12px; font-weight: 750; color: #403a34; }
+    .nav a:hover { background: var(--ink); color: white; border-color: var(--ink); }
+
+    .hero { padding: 58px 0 34px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
+    .hero-card {
+      border-radius: 42px;
+      background: var(--ink);
+      color: white;
+      padding: clamp(28px, 5vw, 58px);
+      min-height: 520px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-card::before {
+      content: ""; position: absolute; inset: -40%;
+      background: radial-gradient(circle at 72% 18%, rgba(217,164,65,.23), transparent 26rem), repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 5px);
+      opacity: .75;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-logo {
+      width: clamp(86px, 12vw, 132px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255,255,255,.96);
+      padding: 8px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.26), inset 0 0 0 1px rgba(255,255,255,.28);
+      margin-bottom: 26px;
+    }
+    .hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+    h1 { margin: 16px 0 0; font-size: clamp(42px, 7vw, 86px); line-height: .88; letter-spacing: -.075em; max-width: 8.2em; }
+    .hero p { margin: 24px 0 0; color: rgba(255,255,255,.66); font-size: clamp(16px, 2vw, 20px); line-height: 1.45; max-width: 34rem; font-weight: 650; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border-radius: 17px; font-weight: 800; border: 1px solid transparent; }
+    .btn.gold { background: var(--gold-2); color: #111; }
+    .btn.ghost { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.07); color: white; }
+    .hero-shot { display: grid; place-items: center; overflow: hidden; }
+    .phone-stack { position: relative; min-height: 620px; width: min(420px, 100%); }
+    .phone-stack img { position: absolute; width: 72%; border-radius: 30px; box-shadow: 0 26px 70px rgba(0,0,0,.22); border: 1px solid rgba(255,255,255,.74); }
+    .phone-stack img:first-child { left: 0; top: 34px; transform: rotate(-5deg); }
+    .phone-stack img:last-child { right: 0; top: 0; transform: rotate(4deg); }
+
+    .section { padding: 50px 0; scroll-margin-top: 118px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+    h2 { margin: 7px 0 0; font-size: clamp(30px, 4vw, 54px); line-height: .95; letter-spacing: -.06em; }
+    .lead { color: var(--muted); font-weight: 650; line-height: 1.55; max-width: 42rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: rgba(255,255,255,.72); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: 0 12px 35px rgba(20,23,26,.055); }
+    .card.dark { background: var(--ink); color: white; border-color: rgba(255,255,255,.08); }
+    .number { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: #efe1bc; color: #6f5a17; font-weight: 900; margin-bottom: 18px; }
+    .card h3 { margin: 0; font-size: 22px; letter-spacing: -.045em; line-height: 1; }
+    .card p, .card li { color: var(--muted); font-weight: 650; line-height: 1.5; }
+    .card.dark p, .card.dark li { color: rgba(255,255,255,.68); }
+    .card ul { padding-left: 18px; margin: 14px 0 0; }
+
+    .flow { display: grid; gap: 22px; }
+    .step {
+      scroll-margin-top: 132px;
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(320px, 450px);
+      gap: 24px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.68);
+      border-radius: 38px;
+      padding: 18px;
+      box-shadow: 0 16px 46px rgba(20,23,26,.07);
+    }
+    .step:nth-child(even) { grid-template-columns: minmax(320px, 450px) minmax(0, .95fr); }
+    .step:nth-child(even) .step-copy { order: 2; }
+    .step-copy { padding: clamp(10px, 3vw, 30px); }
+    .step-copy h3 { margin: 0; font-size: clamp(26px, 3.2vw, 42px); line-height: .96; letter-spacing: -.06em; }
+    .step-copy p { color: var(--muted); font-weight: 650; line-height: 1.55; font-size: 16px; }
+    .screen-frame { background: #111; border-radius: 34px; padding: 9px; width: min(340px, 100%); margin: 0 auto; box-shadow: 0 24px 55px rgba(0,0,0,.18); }
+    .screen-frame img { border-radius: 26px; width: 100%; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .tag { border: 1px solid var(--line); background: #f6f0e7; color: #6f5a17; border-radius: 999px; padding: 8px 11px; font-size: 12px; font-weight: 850; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .do-dont { display: grid; gap: 10px; }
+    .row { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; }
+    .dot { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-2); font-weight: 900; }
+    .dot.green { background: #eaf6e8; color: #2f7a39; }
+
+    .footer { padding: 36px 0 54px; color: var(--muted); font-weight: 650; }
+
+    .progress-rail { position: fixed; left: 0; right: 0; top: 0; height: 5px; z-index: 80; background: rgba(10,11,13,.1); }
+    .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); transition: width .12s ease; }
+    .guide-tools {
+      display: grid;
+      grid-template-columns: minmax(240px, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      border-radius: 26px;
+      padding: 14px;
+      margin: 22px 0;
+      box-shadow: 0 14px 38px rgba(20,23,26,.06);
+    }
+    .search-box { position: relative; }
+    .search-box input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffaf0;
+      color: var(--ink);
+      padding: 0 16px;
+      font: inherit;
+      font-weight: 760;
+      outline: none;
+    }
+    .search-box input:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(217,164,65,.16); }
+    .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .filter-pill, .mini-action {
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.76);
+      color: #403a34;
+      padding: 0 13px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+    .filter-pill[aria-pressed="true"], .mini-action:hover { background: var(--ink); color: white; border-color: var(--ink); }
+    .step.hidden { display: none; }
+    .step-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+    .step-type { border: 1px solid rgba(217,164,65,.35); background: #fff4cf; color: #6f5a17; border-radius: 999px; padding: 7px 10px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; }
+    .step-toggle {
+      margin-top: 18px;
+      border: 0;
+      background: var(--ink);
+      color: white;
+      border-radius: 14px;
+      min-height: 42px;
+      padding: 0 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .step.is-collapsed .step-extra { display: none; }
+    .screen-frame { cursor: zoom-in; transition: transform .18s ease, box-shadow .18s ease; }
+    .screen-frame:hover { transform: translateY(-3px); box-shadow: 0 28px 70px rgba(0,0,0,.24); }
+    .lightbox { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: rgba(4,5,6,.82); padding: 22px; }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-height: 88vh; max-width: min(420px, 92vw); border-radius: 30px; box-shadow: 0 30px 90px rgba(0,0,0,.45); }
+    .lightbox button { position: fixed; top: 18px; right: 18px; min-height: 44px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.1); color: white; padding: 0 16px; font: inherit; font-weight: 900; cursor: pointer; }
+    .check-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .check-progress strong { font-size: 14px; min-width: max-content; }
+    .check-track { flex: 1; height: 14px; border-radius: 999px; background: rgba(10,11,13,.08); overflow: hidden; min-width: 160px; }
+    .check-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--green), var(--gold-2)); transition: width .2s ease; }
+    .check-item { cursor: pointer; border-radius: 18px; padding: 8px; margin: -8px; transition: background .15s ease; }
+    .check-item:hover { background: rgba(217,164,65,.08); }
+    .check-item.done { background: rgba(63,159,107,.08); }
+    .check-item.done p { color: #4f6b58; }
+    .check-item.done .dot { background: var(--green); color: white; }
+    .toc-card { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+    .toc-card a { border: 1px solid var(--line); background: rgba(255,255,255,.74); border-radius: 22px; padding: 16px; box-shadow: 0 10px 28px rgba(20,23,26,.05); }
+    .toc-card strong { display: block; letter-spacing: -.04em; font-size: 18px; }
+    .toc-card span { display: block; margin-top: 6px; color: var(--muted); font-weight: 700; font-size: 13px; line-height: 1.35; }
+
+
+
+    .experience-strip {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+    .experience-panel {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      padding: 20px;
+      color: white;
+    }
+    .experience-panel p { margin: 8px 0 0; color: rgba(255,255,255,.66); font-size: 14px; line-height: 1.45; }
+    .experience-panel strong { display: block; font-size: 24px; letter-spacing: -.055em; line-height: 1; }
+    .comfort-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .comfort-list li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.78); font-weight: 760; font-size: 14px; }
+    .comfort-list span { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,201,74,.18); color: var(--gold-2); font-weight: 950; }
+    .tour-card {
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: rgba(255,255,255,.78);
+      padding: 20px;
+      margin: 18px 0 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 18px 48px rgba(20,23,26,.065);
+    }
+    .tour-card h3 { margin: 0; font-size: clamp(24px, 3vw, 38px); line-height: .95; letter-spacing: -.06em; }
+    .tour-card p { margin: 8px 0 0; color: var(--muted); font-weight: 680; line-height: 1.45; }
+    .tour-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .tour-button {
+      min-height: 48px;
+      border: 1px solid var(--ink);
+      border-radius: 16px;
+      background: var(--ink);
+      color: white;
+      padding: 0 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .tour-button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    body.guided-mode .topbar { box-shadow: 0 12px 36px rgba(20,23,26,.08); }
+    body.guided-mode .guide-tools { position: sticky; top: 78px; z-index: 40; }
+    body.guided-mode .step { display: none; }
+    body.guided-mode .step.is-current { display: grid; outline: 2px solid rgba(217,164,65,.42); outline-offset: 5px; }
+    .guided-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%) translateY(140%);
+      width: min(720px, calc(100% - 24px));
+      z-index: 70;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid rgba(231,222,208,.92);
+      background: rgba(10,11,13,.92);
+      color: white;
+      border-radius: 24px;
+      padding: 10px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      backdrop-filter: blur(18px);
+      transition: transform .22s ease;
+    }
+    body.guided-mode .guided-controls { transform: translateX(-50%) translateY(0); }
+    .guided-controls button {
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 15px;
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 0 13px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .guided-controls button.primary { background: var(--gold-2); color: #111; border-color: var(--gold-2); }
+    .guided-status { min-width: 0; }
+    .guided-status strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
+    .guided-status span { display: block; color: rgba(255,255,255,.58); font-size: 11px; font-weight: 800; margin-top: 3px; }
+    .step-counter-line { height: 6px; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; margin-top: 7px; }
+    .step-counter-line i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); transition: width .2s ease; }
+    .step.is-current { animation: softFocus .28s ease both; }
+    @keyframes softFocus { from { transform: translateY(10px); opacity: .72; } to { transform: translateY(0); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .step.is-current, .screen-frame, .guided-controls, .progress-bar, .check-bar { animation: none; transition: none; }
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid, .grid-3, .two-col, .guide-tools, .toc-card, .experience-strip, .tour-card { grid-template-columns: 1fr; }
+      .hero-card { min-height: auto; border-radius: 32px; }
+      .phone-stack { min-height: 520px; }
+      .step, .step:nth-child(even) { grid-template-columns: 1fr; border-radius: 30px; }
+      .step:nth-child(even) .step-copy { order: initial; }
+      .section-head { display: block; }
+      .nav { max-width: 64vw; }
+      .filter-pills, .tour-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 18px, 1180px); }
+      .hero { padding-top: 24px; }
+      .phone-stack { min-height: 420px; }
+      .phone-stack img { width: 76%; border-radius: 24px; }
+      .hero-actions .btn { width: 100%; }
+      .card { border-radius: 24px; }
+      .screen-frame { max-width: 300px; }
+      .topbar-inner { gap: 10px; flex-wrap: wrap; padding: 10px 0; }
+      .brand { gap: 9px; }
+      .brand-mark { width: 40px; height: 40px; flex: 0 0 auto; }
+      .brand small { font-size: 9px; letter-spacing: .16em; }
+      .brand strong { font-size: 13px; }
+      .nav { width: 100%; max-width: 100%; padding-bottom: 2px; }
+      .nav a { padding: 8px 10px; font-size: 11px; }
+      .section { padding: 34px 0; }
+      .tour-card, .guide-tools { padding: 12px; border-radius: 22px; }
+      .step { padding: 12px; }
+      .step-copy { padding: 10px; }
+      .check-progress { flex-wrap: wrap; align-items: flex-start; }
+      .check-track { flex-basis: 100%; order: 3; }
+      .guided-controls { grid-template-columns: 1fr 1fr; border-radius: 20px; }
+      .guided-status { grid-column: 1 / -1; order: -1; }
+      .experience-panel { border-radius: 24px; }
+    }
+
+    @media print {
+      .topbar, .hero-actions { display: none; }
+      body { background: white; }
+      .step, .card, .hero-card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar" id="pageProgress"></div></div>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark"><img src="assets/brand/to-be-seen-logo.png" alt="TO BE SEEN logo" /></span>
+        <span><small>Loyalty Pass</small><strong>Desktop Version</strong></span>
+      </a>
+      <nav class="nav" aria-label="Navigation">
+        <a href="index.html">Choose version</a>
+        <a href="mobile.html">Phone version</a>
+        <a href="#parcours">Flow</a>
+        <a href="#scanner">Scan</a>
+        <a href="#rewards-profile">Rewards/Profile</a>
+        <a href="#offres">Offers</a>
+        <a href="#checklist">Checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="hero-logo"><img src="assets/brand/to-be-seen-logo.png" alt="TO BE SEEN logo" /></div>
+            <span class="eyebrow">Desktop client demo</span>
+            <h1>A wider, calmer guide for presenting TBS Loyalty Pass.</h1>
+            <p>Use this desktop version during client calls, in-store demos, or onboarding sessions where larger screenshots and a premium walkthrough matter.</p>
+            <div class="hero-actions">
+              <button class="btn gold" type="button" id="startGuidedHero">Start guided tour</button>
+              <a class="btn ghost" href="#quick-paths">Choose a path</a>
+              <a class="btn ghost" href="#checklist">View checklist</a>
+            </div>
+            <div class="experience-strip" aria-label="Client experience summary">
+              <div class="experience-panel">
+                <strong>A calm, guided walkthrough.</strong>
+                <p>Built for demos and onboarding calls: each step explains what the merchant sees, what they should do, and why it matters.</p>
+              </div>
+              <div class="experience-panel">
+                <ul class="comfort-list">
+                  <li><span>1</span> Choose the right path</li>
+                  <li><span>2</span> Preview every screen</li>
+                  <li><span>3</span> Finish with a checklist</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-shot" aria-hidden="true">
+          <div class="phone-stack">
+            <img src="assets/screens/01-login.jpg" alt="TBS Loyalty Pass login screen" />
+            <img src="assets/screens/03-home.jpg" alt="TBS Loyalty Pass home screen" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Quick overview</span>
+            <h2>What the app does</h2>
+          </div>
+          <p class="lead">The app is built for counter service: the merchant shows a QR code, the customer creates their pass, then the merchant scans that customer on each visit to add stamps or unlock a reward.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><div class="number">1</div><h3>Sign up</h3><p>The customer scans the merchant public QR code and creates their personal loyalty card.</p></article>
+          <article class="card"><div class="number">2</div><h3>Scan</h3><p>The merchant scans the customer private QR code at the counter to add a stamp or credit a purchase.</p></article>
+          <article class="card"><div class="number">3</div><h3>Re-engage</h3><p>Customers with an active Wallet pass can receive offers directly through Apple Wallet or Google Wallet.</p></article>
+        </div>
+        <div class="toc-card" id="quick-paths" aria-label="Quick paths">
+          <a href="#parcours" data-filter-jump="setup"><strong>Set up the merchant</strong><span>Login, home, public QR and customers.</span></a>
+          <a href="#scanner" data-filter-jump="counter"><strong>Train the counter team</strong><span>Scan a customer, add a stamp, redeem a reward.</span></a>
+          <a href="#rewards-profile" data-filter-jump="wallet"><strong>Manage Wallet cards</strong><span>Profile, refresh, design and Apple/Google Wallet.</span></a>
+          <a href="#offers-flow" data-filter-jump="offers"><strong>Send an offer</strong><span>Create, review and send a Wallet push offer.</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Merchant flow</span>
+            <h2>The screens, in order</h2>
+          </div>
+          <p class="lead">This flow uses the provided screens and explains what to do at each step. Use the filters to show only what matters for the merchant conversation.</p>
+        </div>
+        <div class="tour-card">
+          <div>
+            <span class="eyebrow">Best client experience</span>
+            <h3>Use Guided Tour for demos.</h3>
+            <p>It shows one screen at a time with previous/next controls, so the merchant never gets lost in a long document.</p>
+          </div>
+          <div class="tour-actions">
+            <button class="tour-button" type="button" id="startGuidedInline">Start guided tour</button>
+            <button class="tour-button secondary" type="button" id="showFullGuide">Full guide</button>
+          </div>
+        </div>
+
+        <div class="guide-tools" aria-label="Guide controls">
+          <label class="search-box">
+            <span class="eyebrow">Find a step</span>
+            <input id="stepSearch" type="search" placeholder="Search: QR, Wallet, reward, offer..." autocomplete="off" />
+          </label>
+          <div class="filter-pills" role="group" aria-label="Filter steps">
+            <button class="filter-pill" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-pill" type="button" data-filter="setup" aria-pressed="false">Setup</button>
+            <button class="filter-pill" type="button" data-filter="counter" aria-pressed="false">Counter</button>
+            <button class="filter-pill" type="button" data-filter="wallet" aria-pressed="false">Wallet</button>
+            <button class="filter-pill" type="button" data-filter="offers" aria-pressed="false">Offers</button>
+            <button class="mini-action" type="button" id="expandAll">Expand all</button>
+            <button class="mini-action" type="button" id="guidedToggle">Guided mode</button>
+          </div>
+        </div>
+
+        <div class="flow">
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 01</span>
+              <h3>Log in to the dashboard</h3>
+              <p>The merchant lands on the login screen. They enter their email and password, then tap <strong>Sign in</strong>. Once logged in, the app loads the merchant data.</p>
+              <div class="tags"><span class="tag">Email</span><span class="tag">Password</span><span class="tag">Sign in</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/01-login.jpg" alt="Merchant login screen" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 02</span>
+              <h3>Wait for loading</h3>
+              <p>The black screen with the TO BE SEEN logo is the startup animation. It means the dashboard is loading. The merchant can wait or tap the screen if the animation invites them to enter.</p>
+              <div class="tags"><span class="tag">Loading</span><span class="tag">Startup</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/02-splash.jpg" alt="TO BE SEEN startup animation" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 03</span>
+              <h3>Home and public QR</h3>
+              <p>The Home screen shows the merchant public QR code. This QR is used to onboard a new customer into the loyalty program. The <strong>Open customer QR</strong> button opens it full-screen for easy display.</p>
+              <ul>
+                <li><strong>Scan</strong> opens the counter scanner.</li>
+                <li><strong>Clients</strong> shows the customer database.</li>
+                <li><strong>Offers</strong> is used to send a Wallet offer.</li>
+                <li><strong>Rewards</strong> is used to manage rewards.</li>
+              </ul>
+              <div class="tags"><span class="tag">Home</span><span class="tag">Public QR</span><span class="tag">Quick actions</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/03-home.jpg" alt="Home screen with public QR" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 04</span>
+              <h3>View customers</h3>
+              <p>The Clients tab groups registered customers. The <strong>Wallet passes</strong> number corresponds to customers who can receive Wallet updates or offers.</p>
+              <ul>
+                <li>The <strong>Wallet</strong> badge means the customer is reachable.</li>
+                <li>The number on the right shows their points or stamps.</li>
+                <li>The code under the name is the customer identifier.</li>
+              </ul>
+              <div class="tags"><span class="tag">CRM</span><span class="tag">Wallet</span><span class="tag">Points</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/04-clients.jpg" alt="Clients screen" /></figure>
+          </article>
+
+          <article id="scanner" class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 05</span>
+              <h3>Open the Scanner</h3>
+              <p>The Scanner screen is used at the counter. The logic is always the same: scan the customer QR, confirm the customer, then add a stamp or give a reward.</p>
+              <ul>
+                <li><strong>Open camera</strong> activates the camera.</li>
+                <li>The manual field lets you paste a code or URL if the camera does not work.</li>
+                <li>The action button stays disabled until a customer is detected.</li>
+              </ul>
+              <div class="tags"><span class="tag">Counter mode</span><span class="tag">Open camera</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/05-scanner-start.jpg" alt="Scanner screen before scanning" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 06</span>
+              <h3>Show the public QR full-screen</h3>
+              <p>From Home, the full-screen view shows the merchant public QR. This is what a new customer scans to create their loyalty card.</p>
+              <p><strong>Copy link</strong> copies the pass link so it can be sent manually if needed.</p>
+              <div class="tags"><span class="tag">Full-screen QR</span><span class="tag">Copy link</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/06-fullscreen-qr.jpg" alt="Public QR full-screen" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 07</span>
+              <h3>Scan the customer private QR</h3>
+              <p>When the camera is open, the merchant points it at the customer QR. As soon as the QR is recognized, the app automatically fills the field with the detected URL or code.</p>
+              <p>In stamp mode, the main button becomes <strong>Add stamp</strong>.</p>
+              <div class="tags"><span class="tag">Camera</span><span class="tag">QR detected</span><span class="tag">Add stamp</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/07-scan-camera.jpg" alt="Camera scan with customer QR" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 08</span>
+              <h3>Customer found</h3>
+              <p>The <strong>Customer scanned</strong> message confirms that the QR was recognized. The merchant can then add the stamp, credit the purchase or continue to a reward.</p>
+              <div class="tags"><span class="tag">Customer found</span><span class="tag">Ready</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/08-scan-success.jpg" alt="Customer scanned message" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 09</span>
+              <h3>Check the visit</h3>
+              <p>After validation, the app shows the latest visit in <strong>Latest visit</strong>. The daily scan counter increases and the customer receives their stamp or points.</p>
+              <p>If the action was just completed, the app briefly locks the button to avoid an accidental double add.</p>
+              <div class="tags"><span class="tag">Latest visit</span><span class="tag">Anti double-click</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/09-after-scan.jpg" alt="Scan after validation" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 10</span>
+              <h3>Give a reward</h3>
+              <p>When a reward is available, the <strong>Rewards available after this stamp</strong> block appears. The <strong>Redeem</strong> button validates the reward at the counter.</p>
+              <p>Example: if the reward costs 1 stamp and the customer has enough, the merchant taps Redeem and gives the reward to the customer.</p>
+              <div class="tags"><span class="tag">Reward ready</span><span class="tag">Redeem</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/10-redeem.jpg" alt="Reward ready after scan" /></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rewards-profile" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Rewards, profile and setup</span>
+            <h2>Advanced screens</h2>
+          </div>
+          <p class="lead">These screens are used to manage program rules, customize the card, send offers and explain how the end customer creates their pass.</p>
+        </div>
+
+        <div class="flow">
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 11</span>
+              <h3>Create a reward</h3>
+              <p>The <strong>Rewards</strong> screen defines what the customer earns and how many points or stamps are required.</p>
+              <ul>
+                <li><strong>Reward name</strong>: reward name.</li>
+                <li><strong>Minimum</strong>: threshold required to earn it.</li>
+                <li><strong>Create</strong>: creates the reward.</li>
+                <li><strong>Active / Draft</strong>: enables or disables the reward in the Scanner.</li>
+              </ul>
+              <div class="tags"><span class="tag">Rewards</span><span class="tag">Minimum</span><span class="tag">Active</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/11-rewards.jpg" alt="Rewards screen" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 12</span>
+              <h3>Understand the Wait state</h3>
+              <p>When a reward is being validated, the button may show <strong>Wait</strong>. This prevents multiple taps and avoids charging the customer twice.</p>
+              <p>Wait for the action to finish before scanning again or giving another reward.</p>
+              <div class="tags"><span class="tag">Wait</span><span class="tag">Safety</span><span class="tag">Anti double-click</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/12-reward-wait.jpg" alt="Reward validation in progress" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 13</span>
+              <h3>Read the card profile</h3>
+              <p>The <strong>Profile</strong> screen summarizes the active card: profile completion, loyalty rule, reward, plan and active color.</p>
+              <p>This is the screen to check before presenting the pass to a merchant.</p>
+              <div class="tags"><span class="tag">Profile</span><span class="tag">Summary</span><span class="tag">Active card</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/13-profile-summary.jpg" alt="Summary Profile" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 14</span>
+              <h3>Refresh or edit the card</h3>
+              <p>At the bottom of Profile, two important actions appear.</p>
+              <ul>
+                <li><strong>Refresh all Wallet cards</strong> pushes the latest changes to installed Wallet cards.</li>
+                <li><strong>Edit card</strong> opens the Manage screen to edit the business, design and rules.</li>
+              </ul>
+              <div class="tags"><span class="tag">Refresh</span><span class="tag">Edit card</span><span class="tag">Wallet maintenance</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/14-profile-actions.jpg" alt="Profile actions" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 15</span>
+              <h3>Customize the design</h3>
+              <p>In <strong>Manage</strong>, the Design section lets you change the main color, card visual and stamp card background.</p>
+              <ul>
+                <li><strong>Palette</strong>: main color.</li>
+                <li><strong>Card visual</strong>: business logo or image.</li>
+                <li><strong>Stamp background</strong>: image behind the stamp grid.</li>
+              </ul>
+              <div class="tags"><span class="tag">Manage</span><span class="tag">Design</span><span class="tag">Upload</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/15-manage-design.jpg" alt="Manage design screen" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 16</span>
+              <h3>Understand the Wallet card</h3>
+              <p>The Wallet card shows the business name, stamp count, member, latest offer and customer QR. This is the card the customer shows at the counter.</p>
+              <p>When the merchant scans this QR, the customer is found in the app.</p>
+              <div class="tags"><span class="tag">Apple Wallet</span><span class="tag">Customer QR</span><span class="tag">Latest offer</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/16-wallet-card.jpg" alt="Customer Wallet card" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 17</span>
+              <h3>Edit loyalty rules</h3>
+              <p>In Manage, the <strong>Rules</strong> section controls the program.</p>
+              <ul>
+                <li><strong>Stamp reward</strong>: final reward.</li>
+                <li><strong>Stamp goal</strong>: number of stamps required.</li>
+                <li><strong>Expiration</strong>: validity period.</li>
+                <li><strong>QR link</strong>: public link used by the merchant QR.</li>
+              </ul>
+              <p>After editing, tap <strong>Save</strong>, then refresh Wallet cards from Profile.</p>
+              <div class="tags"><span class="tag">Rules</span><span class="tag">Stamp goal</span><span class="tag">Save</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/17-manage-rules.jpg" alt="Loyalty rules in Manage" /></figure>
+          </article>
+
+          <article class="step" id="offers-flow">
+            <div class="step-copy">
+              <span class="eyebrow">Step 18</span>
+              <h3>Create a Wallet offer</h3>
+              <p>In <strong>Offers</strong>, the merchant writes a title and message. The <strong>Review send to X</strong> button prepares the send to customers with an active Wallet card.</p>
+              <ul>
+                <li><strong>Save</strong> keeps the offer as a draft.</li>
+                <li><strong>Wallet</strong> is the current sending channel.</li>
+                <li><strong>Review send to 50</strong> means 50 Wallet cards can receive the offer.</li>
+              </ul>
+              <div class="tags"><span class="tag">Offers</span><span class="tag">Wallet push</span><span class="tag">Review</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/18-offers.jpg" alt="Offers screen" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 19</span>
+              <h3>Confirm the send</h3>
+              <p>Before sending, the app shows a confirmation. The merchant reviews the title, message and audience.</p>
+              <ul>
+                <li><strong>Cancel</strong> cancels.</li>
+                <li><strong>Send now</strong> sends the offer immediately.</li>
+              </ul>
+              <p>Tip: do not send too often. One to three offers per week is enough in most cases.</p>
+              <div class="tags"><span class="tag">Confirm send</span><span class="tag">Send now</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/19-offer-confirm.jpg" alt="Offer send confirmation" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 20</span>
+              <h3>Create the customer pass</h3>
+              <p>When a customer scans the merchant public QR, they land on this page. They must enter their name, email and optionally their phone number.</p>
+              <p>Once registered, their private QR is generated and they can add the card to Apple Wallet or Google Wallet.</p>
+              <div class="tags"><span class="tag">Client signup</span><span class="tag">Private QR</span><span class="tag">Wallet</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/20-public-signup.jpg" alt="Public customer signup form" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 21</span>
+              <h3>Read the created customer pass</h3>
+              <p>After signup, the customer sees their personal pass. The top confirms that the pass is ready, then the card shows their stamp count, name, member ID and reward.</p>
+              <p>This QR is the <strong>customer private QR</strong>. It is the one the merchant scans at the counter, not the merchant public QR.</p>
+              <div class="tags"><span class="tag">Pass ready</span><span class="tag">Customer QR</span><span class="tag">Stamps</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/21-public-pass-ready-top.jpg" alt="Customer pass ready with stamp card" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Step 22</span>
+              <h3>Add the pass to Wallet</h3>
+              <p>At the bottom of the customer pass, two buttons let the customer add the card to their phone.</p>
+              <ul>
+                <li><strong>Add to Apple Wallet</strong> installs the card on iPhone.</li>
+                <li><strong>Add to Google Wallet</strong> installs the card on Android.</li>
+                <li>The <strong>Stamps</strong>, <strong>Offers</strong> and <strong>Private QR</strong> shortcuts summarize what the card contains.</li>
+              </ul>
+              <p>Once the card is added, the customer can open it from Wallet on every store visit.</p>
+              <div class="tags"><span class="tag">Apple Wallet</span><span class="tag">Google Wallet</span><span class="tag">Private QR</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/22-public-pass-ready-wallet.jpg" alt="Apple Wallet and Google Wallet buttons" /></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="offres" class="section">
+      <div class="shell two-col">
+        <article class="card dark">
+          <span class="eyebrow">Offers</span>
+          <h2>Send a Wallet offer</h2>
+          <p>In the Offers tab, the merchant writes a title and message, then confirms the send. The offer is sent only to customers with an active Wallet card.</p>
+          <ul>
+            <li><strong>Save</strong> keeps the offer as a draft.</li>
+            <li><strong>Review send to X</strong> prepares the send.</li>
+            <li><strong>Send now</strong> sends the offer after confirmation.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="eyebrow">Profile</span>
+          <h2>Update cards</h2>
+          <p>In Profile, the <strong>Refresh all Wallet cards</strong> button pushes the latest changes to installed Wallet cards.</p>
+          <ul>
+            <li>Use it after changing the logo or color.</li>
+            <li>Use it after changing the number of stamps.</li>
+            <li>Use it if a Wallet card looks outdated.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="checklist" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Counter checklist</span>
+            <h2>Key points for training a merchant</h2>
+          </div>
+        </div>
+        <div class="check-progress" aria-live="polite">
+          <strong id="checkLabel">0/8 completed</strong>
+          <div class="check-track"><div class="check-bar" id="checkBar"></div></div>
+          <button class="mini-action" type="button" id="resetChecklist">Reset</button>
+        </div>
+        <div class="two-col">
+          <article class="card do-dont">
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Merchant QR</strong>: used to register a new customer.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Customer QR</strong>: used for counter scanning.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Add stamp</strong> adds 1 stamp to the scanned customer.</p></div>
+            <div class="row check-item"><span class="dot green">✓</span><p><strong>Redeem</strong> validates a reward when the customer is eligible.</p></div>
+          </article>
+          <article class="card do-dont">
+            <div class="row check-item"><span class="dot">!</span><p>A Wallet offer is only sent to customers with an active Wallet card.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>Do not send too many offers: ideally 1 to 3 per week.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>After a visual change, use <strong>Refresh all Wallet cards</strong>.</p></div>
+            <div class="row check-item"><span class="dot">!</span><p>If the camera does not work, paste the customer code into the manual field.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">TBS Loyalty Pass — desktop walkthrough for polished client demos. <a href="mobile.html">Open phone version</a>.</div>
+  </footer>
+
+  <div class="guided-controls" id="guidedControls" aria-live="polite">
+    <button type="button" id="guidedPrev">Previous</button>
+    <div class="guided-status"><strong id="guidedTitle">Step 1</strong><span id="guidedMeta">Guided tour</span><div class="step-counter-line"><i id="guidedProgress"></i></div></div>
+    <button type="button" class="primary" id="guidedNext">Next</button>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot preview">
+    <button type="button" id="closeLightbox">Close</button>
+    <img src="" alt="" id="lightboxImage" />
+  </div>
+
+  <script>
+    const categories = [
+      'setup','setup','setup','setup',
+      'counter','counter','counter','counter','counter','counter',
+      'wallet','wallet','wallet','wallet','wallet','wallet','wallet',
+      'offers','offers','wallet','wallet','wallet'
+    ];
+    const labels = { setup: 'Setup', counter: 'Counter', wallet: 'Wallet', offers: 'Offers' };
+    const steps = [...document.querySelectorAll('.step')];
+    let activeFilter = 'all';
+    let guidedIndex = 0;
+    let guidedMode = false;
+
+    steps.forEach((step, index) => {
+      const category = categories[index] || 'setup';
+      step.dataset.category = category;
+      step.dataset.text = step.innerText.toLowerCase();
+      const eyebrow = step.querySelector('.eyebrow');
+      const meta = document.createElement('div');
+      meta.className = 'step-meta';
+      const type = document.createElement('span');
+      type.className = 'step-type';
+      type.textContent = labels[category] || category;
+      if (eyebrow) meta.append(eyebrow, type);
+      step.querySelector('.step-copy')?.prepend(meta);
+
+      const copy = step.querySelector('.step-copy');
+      const extraNodes = [...copy.children].filter((node) => !node.classList?.contains('step-meta') && node.tagName !== 'H3');
+      const extra = document.createElement('div');
+      extra.className = 'step-extra';
+      extraNodes.forEach((node) => extra.appendChild(node));
+      copy.appendChild(extra);
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'step-toggle';
+      toggle.textContent = 'Hide details';
+      toggle.addEventListener('click', () => {
+        const collapsed = step.classList.toggle('is-collapsed');
+        toggle.textContent = collapsed ? 'Show details' : 'Hide details';
+      });
+      copy.appendChild(toggle);
+    });
+
+    function applyFilters() {
+      const q = document.querySelector('#stepSearch')?.value.trim().toLowerCase() || '';
+      steps.forEach((step) => {
+        const categoryMatch = activeFilter === 'all' || step.dataset.category === activeFilter;
+        const searchMatch = !q || step.dataset.text.includes(q);
+        step.classList.toggle('hidden', !(categoryMatch && searchMatch));
+      });
+      if (guidedMode) updateGuidedStep(guidedIndex, false);
+    }
+
+    function currentVisibleSteps() {
+      const visible = steps.filter((step) => !step.classList.contains('hidden'));
+      return visible.length ? visible : steps;
+    }
+
+    function updateGuidedStep(nextIndex, shouldScroll = true) {
+      const visible = currentVisibleSteps();
+      guidedIndex = Math.max(0, Math.min(nextIndex, visible.length - 1));
+      steps.forEach((step) => step.classList.remove('is-current'));
+      const current = visible[guidedIndex];
+      if (!current) return;
+      current.classList.add('is-current');
+      current.classList.remove('is-collapsed');
+      const title = current.querySelector('h3')?.textContent?.trim() || 'Guide step';
+      const eyebrow = current.querySelector('.step-meta .eyebrow')?.textContent?.trim() || `Step ${guidedIndex + 1}`;
+      document.querySelector('#guidedTitle').textContent = title;
+      document.querySelector('#guidedMeta').textContent = `${eyebrow} • ${guidedIndex + 1} of ${visible.length}`;
+      document.querySelector('#guidedProgress').style.width = `${((guidedIndex + 1) / visible.length) * 100}%`;
+      document.querySelector('#guidedPrev').disabled = guidedIndex === 0;
+      document.querySelector('#guidedNext').textContent = guidedIndex === visible.length - 1 ? 'Finish' : 'Next';
+      if (shouldScroll) current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function setGuidedMode(on, startAt = 0) {
+      guidedMode = on;
+      document.body.classList.toggle('guided-mode', guidedMode);
+      document.querySelector('#guidedToggle').textContent = guidedMode ? 'Exit guided' : 'Guided mode';
+      if (guidedMode) {
+        updateGuidedStep(startAt);
+        document.querySelector('#parcours')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        steps.forEach((step) => step.classList.remove('is-current'));
+      }
+    }
+
+    function startGuidedFromBeginning() {
+      activeFilter = 'all';
+      document.querySelectorAll('.filter-pill').forEach((pill) => pill.setAttribute('aria-pressed', String(pill.dataset.filter === 'all')));
+      const search = document.querySelector('#stepSearch');
+      if (search) search.value = '';
+      applyFilters();
+      setGuidedMode(true, 0);
+    }
+
+    document.querySelectorAll('.filter-pill').forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        document.querySelectorAll('.filter-pill').forEach((pill) => pill.setAttribute('aria-pressed', String(pill === button)));
+        applyFilters();
+      });
+    });
+    document.querySelector('#stepSearch')?.addEventListener('input', applyFilters);
+    document.querySelector('#expandAll')?.addEventListener('click', (event) => {
+      const collapsedCount = steps.filter((step) => step.classList.contains('is-collapsed')).length;
+      const shouldExpand = collapsedCount > 0;
+      steps.forEach((step) => {
+        step.classList.toggle('is-collapsed', !shouldExpand);
+        const toggle = step.querySelector('.step-toggle');
+        if (toggle) toggle.textContent = shouldExpand ? 'Hide details' : 'Show details';
+      });
+      event.currentTarget.textContent = shouldExpand ? 'Collapse all' : 'Expand all';
+    });
+    document.querySelectorAll('[data-filter-jump]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const target = link.dataset.filterJump;
+        const button = document.querySelector(`.filter-pill[data-filter="${target}"]`);
+        setTimeout(() => button?.click(), 60);
+      });
+    });
+
+    document.querySelector('#startGuidedHero')?.addEventListener('click', startGuidedFromBeginning);
+    document.querySelector('#startGuidedInline')?.addEventListener('click', startGuidedFromBeginning);
+    document.querySelector('#guidedToggle')?.addEventListener('click', () => setGuidedMode(!guidedMode, guidedIndex));
+    document.querySelector('#showFullGuide')?.addEventListener('click', () => setGuidedMode(false));
+    document.querySelector('#guidedPrev')?.addEventListener('click', () => updateGuidedStep(guidedIndex - 1));
+    document.querySelector('#guidedNext')?.addEventListener('click', () => {
+      const visible = currentVisibleSteps();
+      if (guidedIndex >= visible.length - 1) {
+        setGuidedMode(false);
+        document.querySelector('#checklist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        updateGuidedStep(guidedIndex + 1);
+      }
+    });
+    window.addEventListener('keydown', (event) => {
+      if (!guidedMode || ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      if (event.key === 'ArrowRight') updateGuidedStep(guidedIndex + 1);
+      if (event.key === 'ArrowLeft') updateGuidedStep(guidedIndex - 1);
+    });
+
+    const progress = document.querySelector('#pageProgress');
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`;
+    }
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+
+    const lightbox = document.querySelector('#lightbox');
+    const lightboxImage = document.querySelector('#lightboxImage');
+    document.querySelectorAll('.screen-frame img').forEach((img) => {
+      img.addEventListener('click', () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+      });
+    });
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    }
+    document.querySelector('#closeLightbox')?.addEventListener('click', closeLightbox);
+    lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+    window.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+
+    const checklist = [...document.querySelectorAll('.check-item')];
+    const stored = JSON.parse(localStorage.getItem('tbsChecklist') || '[]');
+    function renderChecklist() {
+      const done = checklist.filter((item) => item.classList.contains('done')).length;
+      document.querySelector('#checkLabel').textContent = `${done}/${checklist.length} completed`;
+      document.querySelector('#checkBar').style.width = `${checklist.length ? (done / checklist.length) * 100 : 0}%`;
+      localStorage.setItem('tbsChecklist', JSON.stringify(checklist.map((item) => item.classList.contains('done'))));
+    }
+    checklist.forEach((item, index) => {
+      item.classList.toggle('done', Boolean(stored[index]));
+      item.setAttribute('role', 'checkbox');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-checked', String(Boolean(stored[index])));
+      const toggle = () => {
+        const done = item.classList.toggle('done');
+        item.setAttribute('aria-checked', String(done));
+        renderChecklist();
+      };
+      item.addEventListener('click', toggle);
+      item.addEventListener('keydown', (event) => { if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); toggle(); } });
+    });
+    document.querySelector('#resetChecklist')?.addEventListener('click', () => {
+      checklist.forEach((item) => { item.classList.remove('done'); item.setAttribute('aria-checked', 'false'); });
+      renderChecklist();
+    });
+    renderChecklist();
+  </script>
+
+</body>
+</html>
