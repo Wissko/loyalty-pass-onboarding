@@ -1,35 +1,34 @@
 # TBS Loyalty Pass — Onboarding
 
-Site HTML statique pour expliquer à un commerçant comment utiliser l'app TBS Loyalty Pass.
+Static HTML guide for explaining how merchants use the TBS Loyalty Pass app.
 
-## Contenu
+## Contents
 
-- `index.html` : guide complet d'utilisation
-- `assets/screens/` : 22 screenshots de l'app intégrés au guide
+- `index.html`: full user guide
+- `assets/screens/`: 22 app screenshots used in the guide
 
-## Ouvrir localement
+## Open locally
 
-Double-cliquer sur `index.html` ou lancer :
+Double-click `index.html` or run:
 
 ```bash
 python3 -m http.server 8080
 ```
 
-Puis ouvrir `http://localhost:8080`.
+Then open `http://localhost:8080`.
 
-## Sections du guide
+## Guide sections
 
-- Connexion marchand
-- Home et QR public
+- Merchant login
+- Home and public QR
 - Clients / CRM
-- Scanner comptoir
-- Ajout de tampon
-- Récompense / Redeem
-- Offres Wallet
-- Rewards et redeem
-- Profile et refresh des cartes Wallet
-- Manage / personnalisation de carte
-- Page publique client
-- Pass client prêt
-- Ajout Apple Wallet / Google Wallet
-- Checklist de formation commerçant
+- Counter scanner
+- Add stamp
+- Rewards and redeem
+- Offers via Wallet push
+- Profile and Wallet card refresh
+- Manage / card customization
+- Public customer signup
+- Ready customer pass
+- Apple Wallet / Google Wallet add buttons
+- Merchant training checklist
