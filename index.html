@@ -166,6 +166,7 @@
       <nav class="nav" aria-label="Navigation">
         <a href="#parcours">Parcours</a>
         <a href="#scanner">Scanner</a>
+        <a href="#rewards-profile">Rewards/Profile</a>
         <a href="#offres">Offres</a>
         <a href="#checklist">Checklist</a>
       </nav>
@@ -341,6 +342,156 @@
               <div class="tags"><span class="tag">Reward ready</span><span class="tag">Redeem</span></div>
             </div>
             <figure class="screen-frame"><img src="assets/screens/10-redeem.jpg" alt="Récompense prête après scan" /></figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rewards-profile" class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Récompenses, profil et configuration</span>
+            <h2>Les écrans avancés</h2>
+          </div>
+          <p class="lead">Ces écrans servent à gérer les règles du programme, personnaliser la carte, envoyer les offres et expliquer au client final comment créer son pass.</p>
+        </div>
+
+        <div class="flow">
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 11</span>
+              <h3>Créer une récompense</h3>
+              <p>L’écran <strong>Rewards</strong> permet de définir ce que le client gagne et à partir de combien de points ou tampons.</p>
+              <ul>
+                <li><strong>Reward name</strong> : nom de la récompense.</li>
+                <li><strong>Minimum</strong> : seuil nécessaire pour l’obtenir.</li>
+                <li><strong>Create</strong> : crée la récompense.</li>
+                <li><strong>Active / Draft</strong> : active ou désactive la récompense dans le Scanner.</li>
+              </ul>
+              <div class="tags"><span class="tag">Rewards</span><span class="tag">Minimum</span><span class="tag">Active</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/11-rewards.jpg" alt="Écran Rewards" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 12</span>
+              <h3>Comprendre l’état Wait</h3>
+              <p>Quand une récompense est en cours de validation, le bouton peut afficher <strong>Wait</strong>. Cela évite de cliquer plusieurs fois et de débiter deux fois le client.</p>
+              <p>Il faut attendre la fin de l’action avant de rescanner ou de donner une autre récompense.</p>
+              <div class="tags"><span class="tag">Wait</span><span class="tag">Sécurité</span><span class="tag">Anti double-clic</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/12-reward-wait.jpg" alt="Récompense en cours de validation" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 13</span>
+              <h3>Lire le profil de la carte</h3>
+              <p>L’écran <strong>Profile</strong> résume la carte active : progression du profil, règle de fidélité, récompense, plan et couleur utilisée.</p>
+              <p>C’est l’écran à vérifier avant de présenter le pass à un commerce.</p>
+              <div class="tags"><span class="tag">Profile</span><span class="tag">Résumé</span><span class="tag">Carte active</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/13-profile-summary.jpg" alt="Résumé Profile" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 14</span>
+              <h3>Rafraîchir ou modifier la carte</h3>
+              <p>En bas de Profile, deux actions importantes apparaissent.</p>
+              <ul>
+                <li><strong>Refresh all Wallet cards</strong> pousse les derniers changements vers les cartes Wallet installées.</li>
+                <li><strong>Edit card</strong> ouvre l’écran Manage pour modifier le commerce, le design et les règles.</li>
+              </ul>
+              <div class="tags"><span class="tag">Refresh</span><span class="tag">Edit card</span><span class="tag">Wallet maintenance</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/14-profile-actions.jpg" alt="Actions Profile" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 15</span>
+              <h3>Personnaliser le design</h3>
+              <p>Dans <strong>Manage</strong>, la section Design permet de changer la couleur principale, le visuel de carte et le fond de la carte à tampons.</p>
+              <ul>
+                <li><strong>Palette</strong> : couleur principale.</li>
+                <li><strong>Card visual</strong> : logo ou image du commerce.</li>
+                <li><strong>Stamp background</strong> : image derrière la grille de tampons.</li>
+              </ul>
+              <div class="tags"><span class="tag">Manage</span><span class="tag">Design</span><span class="tag">Upload</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/15-manage-design.jpg" alt="Écran Manage design" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 16</span>
+              <h3>Comprendre la carte Wallet</h3>
+              <p>La carte Wallet affiche le nom du commerce, le nombre de tampons, le membre, la dernière offre et le QR client. C’est cette carte que le client montre au comptoir.</p>
+              <p>Quand le commerçant scanne ce QR, il retrouve le client dans l’app.</p>
+              <div class="tags"><span class="tag">Apple Wallet</span><span class="tag">QR client</span><span class="tag">Latest offer</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/16-wallet-card.jpg" alt="Carte Wallet client" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 17</span>
+              <h3>Modifier les règles fidélité</h3>
+              <p>Dans Manage, la section <strong>Rules</strong> règle le programme.</p>
+              <ul>
+                <li><strong>Stamp reward</strong> : récompense finale.</li>
+                <li><strong>Stamp goal</strong> : nombre de tampons nécessaires.</li>
+                <li><strong>Expiration</strong> : durée de validité.</li>
+                <li><strong>QR link</strong> : lien public utilisé par le QR du commerce.</li>
+              </ul>
+              <p>Après modification, appuyer sur <strong>Save</strong>, puis faire un Refresh des cartes Wallet depuis Profile.</p>
+              <div class="tags"><span class="tag">Rules</span><span class="tag">Stamp goal</span><span class="tag">Save</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/17-manage-rules.jpg" alt="Règles fidélité dans Manage" /></figure>
+          </article>
+
+          <article class="step" id="offers-flow">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 18</span>
+              <h3>Créer une offre Wallet</h3>
+              <p>Dans <strong>Offers</strong>, le commerçant écrit un titre et un message. Le bouton <strong>Review send to X</strong> prépare l’envoi vers les clients qui ont une carte Wallet active.</p>
+              <ul>
+                <li><strong>Save</strong> garde l’offre en brouillon.</li>
+                <li><strong>Wallet</strong> est le canal d’envoi actuel.</li>
+                <li><strong>Review send to 50</strong> signifie que 50 cartes Wallet peuvent recevoir l’offre.</li>
+              </ul>
+              <div class="tags"><span class="tag">Offers</span><span class="tag">Wallet push</span><span class="tag">Review</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/18-offers.jpg" alt="Écran Offers" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 19</span>
+              <h3>Confirmer l’envoi</h3>
+              <p>Avant d’envoyer, l’app affiche une confirmation. Le commerçant relit le titre, le message et l’audience.</p>
+              <ul>
+                <li><strong>Cancel</strong> annule.</li>
+                <li><strong>Send now</strong> envoie l’offre immédiatement.</li>
+              </ul>
+              <p>Conseil : ne pas envoyer trop souvent. Une à trois offres par semaine suffit dans la majorité des cas.</p>
+              <div class="tags"><span class="tag">Confirm send</span><span class="tag">Send now</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/19-offer-confirm.jpg" alt="Confirmation envoi offre" /></figure>
+          </article>
+
+          <article class="step">
+            <div class="step-copy">
+              <span class="eyebrow">Étape 20</span>
+              <h3>Créer le pass côté client</h3>
+              <p>Quand un client scanne le QR public du commerce, il arrive sur cette page. Il doit entrer son nom, son email et éventuellement son téléphone.</p>
+              <p>Une fois inscrit, son QR privé est généré et il peut ajouter la carte à Apple Wallet ou Google Wallet.</p>
+              <div class="tags"><span class="tag">Client signup</span><span class="tag">QR privé</span><span class="tag">Wallet</span></div>
+            </div>
+            <figure class="screen-frame"><img src="assets/screens/20-public-signup.jpg" alt="Formulaire public d'inscription client" /></figure>
           </article>
         </div>
       </div>
