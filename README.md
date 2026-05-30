@@ -5,7 +5,7 @@ Site HTML statique pour expliquer à un commerçant comment utiliser l'app TBS L
 ## Contenu
 
 - `index.html` : guide complet d'utilisation
-- `assets/screens/` : 20 screenshots de l'app intégrés au guide
+- `assets/screens/` : 22 screenshots de l'app intégrés au guide
 
 ## Ouvrir localement
 
@@ -30,4 +30,6 @@ Puis ouvrir `http://localhost:8080`.
 - Profile et refresh des cartes Wallet
 - Manage / personnalisation de carte
 - Page publique client
+- Pass client prêt
+- Ajout Apple Wallet / Google Wallet
 - Checklist de formation commerçant
