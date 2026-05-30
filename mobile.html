@@ -273,6 +273,30 @@
     body.guided-mode .guide-tools { position: sticky; top: 78px; z-index: 40; }
     body.guided-mode .step { display: none; }
     body.guided-mode .step.is-current { display: grid; outline: 2px solid rgba(217,164,65,.42); outline-offset: 5px; }
+
+    .guided-close {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 82;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      background: rgba(10,11,13,.88);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 500;
+      display: none;
+      place-items: center;
+      box-shadow: 0 14px 38px rgba(0,0,0,.22);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+    }
+    .phone-edition.guided-mode .guided-close { display: grid; }
+    .guided-close:active { transform: scale(.96); }
+
     .guided-controls {
       position: fixed;
       left: 50%;
@@ -461,7 +485,31 @@
       .step-copy { padding: 10px; }
       .check-progress { flex-wrap: wrap; align-items: flex-start; }
       .check-track { flex-basis: 100%; order: 3; }
-      .guided-controls { grid-template-columns: 1fr 1fr; border-radius: 20px; }
+  
+    .guided-close {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 82;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 50%;
+      background: rgba(10,11,13,.88);
+      color: white;
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 500;
+      display: none;
+      place-items: center;
+      box-shadow: 0 14px 38px rgba(0,0,0,.22);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+    }
+    .phone-edition.guided-mode .guided-close { display: grid; }
+    .guided-close:active { transform: scale(.96); }
+
+    .guided-controls { grid-template-columns: 1fr 1fr; border-radius: 20px; }
       .guided-status { grid-column: 1 / -1; order: -1; }
       .experience-panel { border-radius: 24px; }
     }
@@ -1090,6 +1138,8 @@
     <div class="shell">TBS Loyalty Pass — phone walkthrough for quick, comfortable merchant onboarding. <a href="desktop.html">Open desktop version</a>.</div>
   </footer>
 
+  <button class="guided-close" type="button" id="guidedClose" aria-label="Exit guided mode">×</button>
+
   <div class="guided-controls" id="guidedControls" aria-live="polite">
     <button type="button" id="guidedPrev">Previous</button>
     <div class="guided-status"><strong id="guidedTitle">Step 1</strong><span id="guidedMeta">Guided tour</span><div class="step-counter-line"><i id="guidedProgress"></i></div></div>
@@ -1239,6 +1289,7 @@
     document.querySelector('#startGuidedHero')?.addEventListener('click', startGuidedFromBeginning);
     document.querySelector('#startGuidedInline')?.addEventListener('click', startGuidedFromBeginning);
     document.querySelector('#guidedToggle')?.addEventListener('click', () => setGuidedMode(!guidedMode, guidedIndex));
+    document.querySelector('#guidedClose')?.addEventListener('click', () => setGuidedMode(false));
     document.querySelector('#showFullGuide')?.addEventListener('click', () => setGuidedMode(false));
     document.querySelector('#guidedPrev')?.addEventListener('click', () => updateGuidedStep(guidedIndex - 1));
     document.querySelector('#guidedNext')?.addEventListener('click', () => {
