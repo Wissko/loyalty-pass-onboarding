@@ -336,14 +336,98 @@
     .phone-edition .hero { padding-top: 24px; }
     .phone-edition .hero-card { min-height: auto; border-radius: 30px; padding: 26px; }
     .phone-edition h1 { font-size: clamp(42px, 13vw, 58px); }
-    .phone-edition .phone-stack { min-height: 430px; }
-    .phone-edition .phone-stack img { width: 76%; border-radius: 24px; }
+    .phone-edition .phone-stack { min-height: 430px; overflow: hidden; }
+    .phone-edition .phone-stack img { width: 72%; border-radius: 24px; }
+    .phone-edition .phone-stack img:first-child { left: 8px; }
+    .phone-edition .phone-stack img:last-child { right: 8px; }
     .phone-edition .step { border-radius: 28px; padding: 12px; }
     .phone-edition .step:nth-child(even) .step-copy { order: initial; }
     .phone-edition .screen-frame { max-width: 320px; }
     .phone-edition .hero-actions .btn { width: 100%; }
     .phone-edition .guided-controls { grid-template-columns: 1fr 1fr; width: min(420px, calc(100% - 18px)); }
+    .phone-edition .webapp-guide { grid-template-columns: 1fr; }
+    .phone-edition .webapp-intro { position: relative; top: auto; border-radius: 28px; }
+    .phone-edition .webapp-guide, .phone-edition .platform-card, .phone-edition .webapp-shots { min-width: 0; max-width: 100%; }
+    .phone-edition .webapp-shots { display: flex; overflow-x: auto; overflow-y: hidden; gap: 10px; padding-bottom: 4px; scroll-snap-type: x mandatory; }
+    .phone-edition .webapp-shot { min-width: 172px; max-width: 172px; scroll-snap-align: start; flex: 0 0 172px; }
     .phone-edition .guided-status { grid-column: 1 / -1; order: -1; }
+
+
+    .webapp-guide {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .webapp-intro {
+      position: sticky;
+      top: 108px;
+      border-radius: 32px;
+      background: #0A0B0D;
+      color: white;
+      padding: clamp(22px, 4vw, 34px);
+      box-shadow: 0 22px 60px rgba(20,23,26,.16);
+      overflow: hidden;
+    }
+    .webapp-intro::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 74% 18%, rgba(255,201,74,.22), transparent 23rem), repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 5px);
+    }
+    .webapp-intro > * { position: relative; }
+    .webapp-intro h2 { color: white; }
+    .webapp-intro p { color: rgba(255,255,255,.68); font-weight: 700; line-height: 1.5; }
+    .platform-card {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(255,255,255,.78);
+      padding: 18px;
+      box-shadow: 0 16px 42px rgba(20,23,26,.06);
+    }
+    .platform-card + .platform-card { margin-top: 14px; }
+    .platform-card h3 { margin: 0; font-size: clamp(24px, 3vw, 38px); line-height: .95; letter-spacing: -.06em; }
+    .platform-card p, .platform-card li { color: var(--muted); font-weight: 700; line-height: 1.48; }
+    .platform-card ol { margin: 14px 0 0; padding-left: 20px; }
+    .platform-card li { margin-top: 8px; }
+    .webapp-shots {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(110px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .webapp-shot {
+      border-radius: 24px;
+      background: #111;
+      padding: 6px;
+      box-shadow: 0 14px 34px rgba(0,0,0,.16);
+    }
+    .webapp-shot img { border-radius: 18px; width: 100%; }
+    .platform-jumps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .platform-jumps a { min-height: 40px; display: inline-flex; align-items: center; border-radius: 999px; background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.16); padding: 0 13px; font-size: 12px; font-weight: 900; }
+    .android-note {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+      margin-top: 14px;
+      border-radius: 20px;
+      background: #F6F0E7;
+      padding: 12px;
+      color: #4F4A43;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+    .android-note span {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      background: #0A0B0D;
+      color: #FFC94A;
+      font-weight: 950;
+    }
 
     @media (max-width: 860px) {
       .hero-grid, .grid-3, .two-col, .guide-tools, .toc-card, .experience-strip, .tour-card { grid-template-columns: 1fr; }
@@ -384,6 +468,7 @@
 
 
     /* Mobile guided mode: one clean app-like screen, no desktop controls covering content. */
+    .phone-edition.guided-mode #webapp,
     .phone-edition.guided-mode .topbar,
     .phone-edition.guided-mode main > .hero,
     .phone-edition.guided-mode main > .section:not(#parcours),
@@ -460,6 +545,15 @@
     .phone-edition.guided-mode .step-counter-line { height: 8px; }
     .phone-edition.guided-mode .progress-rail { height: 4px; }
 
+
+    .phone-edition .webapp-guide { grid-template-columns: minmax(0, 1fr) !important; overflow: hidden; }
+    .phone-edition .webapp-intro { position: relative !important; top: auto !important; width: 100%; max-width: 100%; min-width: 0; overflow: hidden; padding: 18px; border-radius: 24px; }
+    .phone-edition .webapp-intro h2 { font-size: 31px; }
+    .phone-edition .webapp-intro p { font-size: 13px; margin: 9px 0 0; }
+    .phone-edition .platform-jumps { margin-top: 12px; }
+    .phone-edition .platform-card { width: 100%; overflow: hidden; }
+    .phone-edition .webapp-shots { display: flex !important; grid-template-columns: none !important; overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+
     @media print {
       .topbar, .hero-actions { display: none; }
       body { background: white; }
@@ -482,6 +576,7 @@
         <a href="#scanner">Scan</a>
         <a href="#rewards-profile">Rewards/Profile</a>
         <a href="#offres">Offers</a>
+        <a href="#webapp">Web app</a>
         <a href="#checklist">Checklist</a>
       </nav>
     </div>
@@ -911,6 +1006,55 @@
       </div>
     </section>
 
+
+    <section id="webapp" class="section">
+      <div class="shell webapp-guide">
+        <aside class="webapp-intro">
+          <span class="eyebrow">Install the app</span>
+          <h2>Use Loyalty Pass like a real phone app.</h2>
+          <p>Merchants do not need to download anything from the App Store or Play Store. They can add the web app to the Home Screen and open it like a normal app.</p>
+          <p>Use this section during onboarding after the merchant has their login details.</p>
+          <div class="platform-jumps"><a href="#iphone-webapp">iPhone / Safari</a><a href="#android-webapp">Android / Chrome</a></div>
+        </aside>
+
+        <div>
+          <article class="platform-card" id="iphone-webapp">
+            <span class="eyebrow">For iPhone / Safari</span>
+            <h3>Add Loyalty Pass to the iPhone Home Screen</h3>
+            <ol>
+              <li>Open <strong>tbsloyaltypass.com/login</strong> in Safari.</li>
+              <li>Tap the Safari <strong>Share</strong> button at the bottom of the screen.</li>
+              <li>Choose <strong>Add to Home Screen</strong>.</li>
+              <li>Rename the app to <strong>Loyalty Pass</strong> if needed.</li>
+              <li>Keep <strong>Open as Web App</strong> enabled, then tap <strong>Add</strong>.</li>
+              <li>The merchant can now open Loyalty Pass directly from the iPhone Home Screen.</li>
+            </ol>
+            <div class="webapp-shots" aria-label="iPhone installation screenshots">
+              <figure class="webapp-shot"><img src="assets/webapp/01-safari-login.jpg" alt="Loyalty Pass login page open in Safari" /></figure>
+              <figure class="webapp-shot"><img src="assets/webapp/02-safari-menu.jpg" alt="Safari menu opened from the bottom toolbar" /></figure>
+              <figure class="webapp-shot"><img src="assets/webapp/03-add-home-screen-title.jpg" alt="Add to Home Screen view with web app option enabled" /></figure>
+              <figure class="webapp-shot"><img src="assets/webapp/04-add-home-screen-name.jpg" alt="App name edited to Loyalty Pass" /></figure>
+              <figure class="webapp-shot"><img src="assets/webapp/05-home-screen-icon.jpg" alt="Loyalty Pass icon on the iPhone Home Screen" /></figure>
+            </div>
+          </article>
+
+          <article class="platform-card" id="android-webapp">
+            <span class="eyebrow">For Android / Chrome</span>
+            <h3>Add Loyalty Pass to the Android Home screen</h3>
+            <ol>
+              <li>Open <strong>tbsloyaltypass.com/login</strong> in Chrome.</li>
+              <li>Tap the <strong>three-dot menu</strong> in the top-right corner.</li>
+              <li>Tap <strong>Add to Home screen</strong> or <strong>Install app</strong>. The wording depends on the Android phone.</li>
+              <li>Name it <strong>Loyalty Pass</strong>, then tap <strong>Add</strong> or <strong>Install</strong>.</li>
+              <li>The merchant can now open Loyalty Pass from the Android Home screen like an app.</li>
+            </ol>
+            <div class="android-note"><span>Tip</span><p>If Android shows <strong>Install app</strong>, choose it. If it only shows <strong>Add to Home screen</strong>, that is also correct.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
     <section id="checklist" class="section">
       <div class="shell">
         <div class="section-head">
@@ -958,6 +1102,18 @@
   </div>
 
   <script>
+    function stabilizeHashScroll() {
+      if (!window.location.hash) return;
+      const target = document.querySelector(window.location.hash);
+      if (!target) return;
+      const jump = () => { const rect = target.getBoundingClientRect(); window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - 24), behavior: "auto" }); };
+      window.setTimeout(jump, 180);
+      window.setTimeout(jump, 650);
+    }
+    window.addEventListener("load", stabilizeHashScroll);
+    window.addEventListener("DOMContentLoaded", stabilizeHashScroll);
+    stabilizeHashScroll();
+
     const categories = [
       'setup','setup','setup','setup',
       'counter','counter','counter','counter','counter','counter',

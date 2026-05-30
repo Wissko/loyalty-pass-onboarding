@@ -8,6 +8,7 @@ Static HTML guide for explaining how merchants use the TBS Loyalty Pass app.
 - `mobile.html`: phone-optimized guide
 - `desktop.html`: desktop-optimized guide
 - `assets/screens/`: 22 app screenshots used in the guide
+- `assets/webapp/`: screenshots explaining how to add the app to the phone Home Screen
 - `assets/brand/to-be-seen-logo.png`: TO BE SEEN logo used in the header and hero
 
 ## Open locally
@@ -45,4 +46,5 @@ Then open `http://localhost:8080`.
 - Public customer signup
 - Ready customer pass
 - Apple Wallet / Google Wallet add buttons
+- Web app installation on iPhone/Safari and Android/Chrome
 - Merchant training checklist
