@@ -20,9 +20,11 @@ Then open `http://localhost:8080`.
 
 ## Interactive features
 
+- Client-facing guided tour mode with previous/next controls
 - Scroll progress bar
 - Searchable guide steps
 - Category filters: Setup, Counter, Wallet, Offers
+- Quick path cards for different merchant conversations
 - Expand/collapse all step details
 - Click any screenshot to open a larger preview
 - Interactive merchant training checklist saved in the browser

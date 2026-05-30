@@ -21,7 +21,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
     body {
       margin: 0;
       background:
@@ -97,7 +97,7 @@
     .phone-stack img:first-child { left: 0; top: 34px; transform: rotate(-5deg); }
     .phone-stack img:last-child { right: 0; top: 0; transform: rotate(4deg); }
 
-    .section { padding: 50px 0; }
+    .section { padding: 50px 0; scroll-margin-top: 118px; }
     .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
     h2 { margin: 7px 0 0; font-size: clamp(30px, 4vw, 54px); line-height: .95; letter-spacing: -.06em; }
     .lead { color: var(--muted); font-weight: 650; line-height: 1.55; max-width: 42rem; }
@@ -113,6 +113,7 @@
 
     .flow { display: grid; gap: 22px; }
     .step {
+      scroll-margin-top: 132px;
       display: grid;
       grid-template-columns: minmax(0, .95fr) minmax(260px, 390px);
       gap: 24px;
@@ -141,7 +142,7 @@
 
     .footer { padding: 36px 0 54px; color: var(--muted); font-weight: 650; }
 
-    .progress-rail { position: fixed; left: 0; right: 0; top: 0; height: 3px; z-index: 80; background: rgba(10,11,13,.08); }
+    .progress-rail { position: fixed; left: 0; right: 0; top: 0; height: 5px; z-index: 80; background: rgba(10,11,13,.1); }
     .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); transition: width .12s ease; }
     .guide-tools {
       display: grid;
@@ -208,44 +209,151 @@
     .lightbox button { position: fixed; top: 18px; right: 18px; min-height: 44px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.1); color: white; padding: 0 16px; font: inherit; font-weight: 900; cursor: pointer; }
     .check-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
     .check-progress strong { font-size: 14px; min-width: max-content; }
-    .check-track { flex: 1; height: 10px; border-radius: 999px; background: rgba(10,11,13,.08); overflow: hidden; }
+    .check-track { flex: 1; height: 14px; border-radius: 999px; background: rgba(10,11,13,.08); overflow: hidden; min-width: 160px; }
     .check-bar { width: 0%; height: 100%; background: linear-gradient(90deg, var(--green), var(--gold-2)); transition: width .2s ease; }
     .check-item { cursor: pointer; border-radius: 18px; padding: 8px; margin: -8px; transition: background .15s ease; }
     .check-item:hover { background: rgba(217,164,65,.08); }
-    .check-item.done p { text-decoration: line-through; color: #827b70; }
+    .check-item.done { background: rgba(63,159,107,.08); }
+    .check-item.done p { color: #4f6b58; }
+    .check-item.done .dot { background: var(--green); color: white; }
     .toc-card { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
     .toc-card a { border: 1px solid var(--line); background: rgba(255,255,255,.74); border-radius: 22px; padding: 16px; box-shadow: 0 10px 28px rgba(20,23,26,.05); }
     .toc-card strong { display: block; letter-spacing: -.04em; font-size: 18px; }
     .toc-card span { display: block; margin-top: 6px; color: var(--muted); font-weight: 700; font-size: 13px; line-height: 1.35; }
 
 
+
+    .experience-strip {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items: stretch;
+      margin-top: 18px;
+    }
+    .experience-panel {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+      padding: 20px;
+      color: white;
+    }
+    .experience-panel p { margin: 8px 0 0; color: rgba(255,255,255,.66); font-size: 14px; line-height: 1.45; }
+    .experience-panel strong { display: block; font-size: 24px; letter-spacing: -.055em; line-height: 1; }
+    .comfort-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .comfort-list li { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.78); font-weight: 760; font-size: 14px; }
+    .comfort-list span { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,201,74,.18); color: var(--gold-2); font-weight: 950; }
+    .tour-card {
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background: rgba(255,255,255,.78);
+      padding: 20px;
+      margin: 18px 0 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 18px 48px rgba(20,23,26,.065);
+    }
+    .tour-card h3 { margin: 0; font-size: clamp(24px, 3vw, 38px); line-height: .95; letter-spacing: -.06em; }
+    .tour-card p { margin: 8px 0 0; color: var(--muted); font-weight: 680; line-height: 1.45; }
+    .tour-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+    .tour-button {
+      min-height: 48px;
+      border: 1px solid var(--ink);
+      border-radius: 16px;
+      background: var(--ink);
+      color: white;
+      padding: 0 16px;
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .tour-button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    body.guided-mode .topbar { box-shadow: 0 12px 36px rgba(20,23,26,.08); }
+    body.guided-mode .guide-tools { position: sticky; top: 78px; z-index: 40; }
+    body.guided-mode .step { display: none; }
+    body.guided-mode .step.is-current { display: grid; outline: 2px solid rgba(217,164,65,.42); outline-offset: 5px; }
+    .guided-controls {
+      position: fixed;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%) translateY(140%);
+      width: min(720px, calc(100% - 24px));
+      z-index: 70;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid rgba(231,222,208,.92);
+      background: rgba(10,11,13,.92);
+      color: white;
+      border-radius: 24px;
+      padding: 10px;
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
+      backdrop-filter: blur(18px);
+      transition: transform .22s ease;
+    }
+    body.guided-mode .guided-controls { transform: translateX(-50%) translateY(0); }
+    .guided-controls button {
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 15px;
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 0 13px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .guided-controls button.primary { background: var(--gold-2); color: #111; border-color: var(--gold-2); }
+    .guided-status { min-width: 0; }
+    .guided-status strong { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 13px; }
+    .guided-status span { display: block; color: rgba(255,255,255,.58); font-size: 11px; font-weight: 800; margin-top: 3px; }
+    .step-counter-line { height: 6px; border-radius: 999px; background: rgba(255,255,255,.12); overflow: hidden; margin-top: 7px; }
+    .step-counter-line i { display: block; height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--gold-2)); transition: width .2s ease; }
+    .step.is-current { animation: softFocus .28s ease both; }
+    @keyframes softFocus { from { transform: translateY(10px); opacity: .72; } to { transform: translateY(0); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .step.is-current, .screen-frame, .guided-controls, .progress-bar, .check-bar { animation: none; transition: none; }
+    }
+
     @media (max-width: 860px) {
-      .hero-grid, .grid-3, .two-col, .guide-tools, .toc-card { grid-template-columns: 1fr; }
+      .hero-grid, .grid-3, .two-col, .guide-tools, .toc-card, .experience-strip, .tour-card { grid-template-columns: 1fr; }
       .hero-card { min-height: auto; border-radius: 32px; }
       .phone-stack { min-height: 520px; }
       .step, .step:nth-child(even) { grid-template-columns: 1fr; border-radius: 30px; }
       .step:nth-child(even) .step-copy { order: initial; }
       .section-head { display: block; }
       .nav { max-width: 64vw; }
-      .filter-pills { justify-content: flex-start; }
+      .filter-pills, .tour-actions { justify-content: flex-start; }
     }
 
     @media (max-width: 520px) {
       .shell { width: min(100% - 18px, 1180px); }
-      .hero { padding-top: 28px; }
+      .hero { padding-top: 24px; }
       .phone-stack { min-height: 420px; }
       .phone-stack img { width: 76%; border-radius: 24px; }
       .hero-actions .btn { width: 100%; }
       .card { border-radius: 24px; }
       .screen-frame { max-width: 300px; }
-      .topbar-inner { gap: 10px; }
+      .topbar-inner { gap: 10px; flex-wrap: wrap; padding: 10px 0; }
       .brand { gap: 9px; }
       .brand-mark { width: 40px; height: 40px; flex: 0 0 auto; }
       .brand small { font-size: 9px; letter-spacing: .16em; }
       .brand strong { font-size: 13px; }
-      .nav a { padding: 9px 11px; }
+      .nav { width: 100%; max-width: 100%; padding-bottom: 2px; }
+      .nav a { padding: 8px 10px; font-size: 11px; }
+      .section { padding: 34px 0; }
+      .tour-card, .guide-tools { padding: 12px; border-radius: 22px; }
+      .step { padding: 12px; }
+      .step-copy { padding: 10px; }
       .check-progress { flex-wrap: wrap; align-items: flex-start; }
       .check-track { flex-basis: 100%; order: 3; }
+      .guided-controls { grid-template-columns: 1fr 1fr; border-radius: 20px; }
+      .guided-status { grid-column: 1 / -1; order: -1; }
+      .experience-panel { border-radius: 24px; }
     }
 
     @media print {
@@ -283,9 +391,22 @@
             <h1>Use TBS Loyalty Pass with confidence.</h1>
             <p>A clear guide for merchant login, customer signup, QR scanning, stamp validation, reward management and Wallet offer sending.</p>
             <div class="hero-actions">
-              <a class="btn gold" href="#parcours">Start the guide</a>
+              <button class="btn gold" type="button" id="startGuidedHero">Start guided tour</button>
               <a class="btn ghost" href="#quick-paths">Choose a path</a>
               <a class="btn ghost" href="#checklist">View checklist</a>
+            </div>
+            <div class="experience-strip" aria-label="Client experience summary">
+              <div class="experience-panel">
+                <strong>A calm, guided walkthrough.</strong>
+                <p>Built for demos and onboarding calls: each step explains what the merchant sees, what they should do, and why it matters.</p>
+              </div>
+              <div class="experience-panel">
+                <ul class="comfort-list">
+                  <li><span>1</span> Choose the right path</li>
+                  <li><span>2</span> Preview every screen</li>
+                  <li><span>3</span> Finish with a checklist</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -330,6 +451,18 @@
           </div>
           <p class="lead">This flow uses the provided screens and explains what to do at each step. Use the filters to show only what matters for the merchant conversation.</p>
         </div>
+        <div class="tour-card">
+          <div>
+            <span class="eyebrow">Best client experience</span>
+            <h3>Use Guided Tour for demos.</h3>
+            <p>It shows one screen at a time with previous/next controls, so the merchant never gets lost in a long document.</p>
+          </div>
+          <div class="tour-actions">
+            <button class="tour-button" type="button" id="startGuidedInline">Start guided tour</button>
+            <button class="tour-button secondary" type="button" id="showFullGuide">Full guide</button>
+          </div>
+        </div>
+
         <div class="guide-tools" aria-label="Guide controls">
           <label class="search-box">
             <span class="eyebrow">Find a step</span>
@@ -342,6 +475,7 @@
             <button class="filter-pill" type="button" data-filter="wallet" aria-pressed="false">Wallet</button>
             <button class="filter-pill" type="button" data-filter="offers" aria-pressed="false">Offers</button>
             <button class="mini-action" type="button" id="expandAll">Expand all</button>
+            <button class="mini-action" type="button" id="guidedToggle">Guided mode</button>
           </div>
         </div>
 
@@ -703,8 +837,14 @@
   </main>
 
   <footer class="footer">
-    <div class="shell">TBS Loyalty Pass — merchant onboarding. Open this file in a browser or host it as a static page.</div>
+    <div class="shell">TBS Loyalty Pass — a client-ready walkthrough for confident merchant onboarding.</div>
   </footer>
+
+  <div class="guided-controls" id="guidedControls" aria-live="polite">
+    <button type="button" id="guidedPrev">Previous</button>
+    <div class="guided-status"><strong id="guidedTitle">Step 1</strong><span id="guidedMeta">Guided tour</span><div class="step-counter-line"><i id="guidedProgress"></i></div></div>
+    <button type="button" class="primary" id="guidedNext">Next</button>
+  </div>
 
   <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Screenshot preview">
     <button type="button" id="closeLightbox">Close</button>
@@ -721,6 +861,8 @@
     const labels = { setup: 'Setup', counter: 'Counter', wallet: 'Wallet', offers: 'Offers' };
     const steps = [...document.querySelectorAll('.step')];
     let activeFilter = 'all';
+    let guidedIndex = 0;
+    let guidedMode = false;
 
     steps.forEach((step, index) => {
       const category = categories[index] || 'setup';
@@ -759,6 +901,51 @@
         const searchMatch = !q || step.dataset.text.includes(q);
         step.classList.toggle('hidden', !(categoryMatch && searchMatch));
       });
+      if (guidedMode) updateGuidedStep(guidedIndex, false);
+    }
+
+    function currentVisibleSteps() {
+      const visible = steps.filter((step) => !step.classList.contains('hidden'));
+      return visible.length ? visible : steps;
+    }
+
+    function updateGuidedStep(nextIndex, shouldScroll = true) {
+      const visible = currentVisibleSteps();
+      guidedIndex = Math.max(0, Math.min(nextIndex, visible.length - 1));
+      steps.forEach((step) => step.classList.remove('is-current'));
+      const current = visible[guidedIndex];
+      if (!current) return;
+      current.classList.add('is-current');
+      current.classList.remove('is-collapsed');
+      const title = current.querySelector('h3')?.textContent?.trim() || 'Guide step';
+      const eyebrow = current.querySelector('.step-meta .eyebrow')?.textContent?.trim() || `Step ${guidedIndex + 1}`;
+      document.querySelector('#guidedTitle').textContent = title;
+      document.querySelector('#guidedMeta').textContent = `${eyebrow} • ${guidedIndex + 1} of ${visible.length}`;
+      document.querySelector('#guidedProgress').style.width = `${((guidedIndex + 1) / visible.length) * 100}%`;
+      document.querySelector('#guidedPrev').disabled = guidedIndex === 0;
+      document.querySelector('#guidedNext').textContent = guidedIndex === visible.length - 1 ? 'Finish' : 'Next';
+      if (shouldScroll) current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function setGuidedMode(on, startAt = 0) {
+      guidedMode = on;
+      document.body.classList.toggle('guided-mode', guidedMode);
+      document.querySelector('#guidedToggle').textContent = guidedMode ? 'Exit guided' : 'Guided mode';
+      if (guidedMode) {
+        updateGuidedStep(startAt);
+        document.querySelector('#parcours')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        steps.forEach((step) => step.classList.remove('is-current'));
+      }
+    }
+
+    function startGuidedFromBeginning() {
+      activeFilter = 'all';
+      document.querySelectorAll('.filter-pill').forEach((pill) => pill.setAttribute('aria-pressed', String(pill.dataset.filter === 'all')));
+      const search = document.querySelector('#stepSearch');
+      if (search) search.value = '';
+      applyFilters();
+      setGuidedMode(true, 0);
     }
 
     document.querySelectorAll('.filter-pill').forEach((button) => {
@@ -785,6 +972,26 @@
         const button = document.querySelector(`.filter-pill[data-filter="${target}"]`);
         setTimeout(() => button?.click(), 60);
       });
+    });
+
+    document.querySelector('#startGuidedHero')?.addEventListener('click', startGuidedFromBeginning);
+    document.querySelector('#startGuidedInline')?.addEventListener('click', startGuidedFromBeginning);
+    document.querySelector('#guidedToggle')?.addEventListener('click', () => setGuidedMode(!guidedMode, guidedIndex));
+    document.querySelector('#showFullGuide')?.addEventListener('click', () => setGuidedMode(false));
+    document.querySelector('#guidedPrev')?.addEventListener('click', () => updateGuidedStep(guidedIndex - 1));
+    document.querySelector('#guidedNext')?.addEventListener('click', () => {
+      const visible = currentVisibleSteps();
+      if (guidedIndex >= visible.length - 1) {
+        setGuidedMode(false);
+        document.querySelector('#checklist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        updateGuidedStep(guidedIndex + 1);
+      }
+    });
+    window.addEventListener('keydown', (event) => {
+      if (!guidedMode || ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      if (event.key === 'ArrowRight') updateGuidedStep(guidedIndex + 1);
+      if (event.key === 'ArrowLeft') updateGuidedStep(guidedIndex - 1);
     });
 
     const progress = document.querySelector('#pageProgress');
